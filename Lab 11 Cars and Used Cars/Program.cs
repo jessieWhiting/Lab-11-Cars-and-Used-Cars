@@ -41,11 +41,11 @@ namespace Lab_11_Cars_and_Used_Cars
                 string input = Console.ReadLine();
                 int pick = int.Parse(input) - 1;
 
-            Console.WriteLine("=====================================================================================================================");
-            Console.WriteLine("=====================================================================================================================");
-            Console.WriteLine($" Enjoy your NEW to YOU:\n {carsInventory[pick]}");
-            Console.WriteLine("=====================================================================================================================");
-
+                Console.WriteLine("=====================================================================================================================");
+                Console.WriteLine("=====================================================================================================================");
+                Console.WriteLine($" Enjoy your NEW to YOU:\n {carsInventory[pick]}");
+                Console.WriteLine("=====================================================================================================================");
+    
                 carsInventory.RemoveAt(pick);
                 index = 1;
                 foreach (Car car in carsInventory)
@@ -53,11 +53,33 @@ namespace Lab_11_Cars_and_Used_Cars
 
                 Console.WriteLine(index + " :" + car);
                 index++;
+
+                    goOn = goAgain();
             }
-            Console.WriteLine("=====================================================================================================================");
-            Console.WriteLine("Thank you for your purchase.");
+                Console.WriteLine("=====================================================================================================================");
+                Console.WriteLine("Thank you for your purchase.");
 
+                 static bool goAgain()
+                {
+                    Console.WriteLine("----------------------------------------------");
+                    Console.WriteLine("Would you like to Purchase another vehicle? Y/N? ");
 
+                    string input = Console.ReadLine().Trim().ToLower();
+                    if (input == "y")
+                    {
+                        return true;
+                    }
+                    else if (input == "n")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                        return goAgain();
+                    }
+                }
+            }
         }
     }
 }
