@@ -6,8 +6,11 @@ namespace Lab_11_Cars_and_Used_Cars
     {
         public static void Main()
         {
+            bool goOn = true;
             while (true)
             {
+
+
                 //since I have overridden string, I can do the following:
                 Console.WriteLine("Vehicle Inventory:");
                 Console.WriteLine("=====================================================================================================================");
@@ -40,34 +43,43 @@ namespace Lab_11_Cars_and_Used_Cars
 
                 Console.WriteLine("=====================================================================================================================");
                 Console.WriteLine("=====================================================================================================================");
-                // index out of range
-                try
-                {
-                    Console.WriteLine($" Enjoy your NEW to YOU:\n {carsInventory[pick]}");
-                }
-                catch
-                {
-                    Console.WriteLine("Please input a valid car number!");
-                    continue;
-                }
-
-
+                Console.WriteLine($" Enjoy your NEW to YOU:\n {carsInventory[pick]}");
                 Console.WriteLine("=====================================================================================================================");
-
+    
                 carsInventory.RemoveAt(pick);
                 index = 1;
                 foreach (Car car in carsInventory)
                 {
 
-                    Console.WriteLine(index + " :" + car);
-                    index++;
-                }
+                Console.WriteLine(index + " :" + car);
+                index++;
+
+                    goOn = goAgain();
+            }
                 Console.WriteLine("=====================================================================================================================");
                 Console.WriteLine("Thank you for your purchase.");
-                break;
-            }
-            
 
+                 static bool goAgain()
+                {
+                    Console.WriteLine("----------------------------------------------");
+                    Console.WriteLine("Would you like to Purchase another vehicle? Y/N? ");
+
+                    string input = Console.ReadLine().Trim().ToLower();
+                    if (input == "y")
+                    {
+                        return true;
+                    }
+                    else if (input == "n")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input.");
+                        return goAgain();
+                    }
+                }
+            }
         }
     }
 }
